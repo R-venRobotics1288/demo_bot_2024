@@ -7,6 +7,12 @@ package frc.robot.subsystems;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import com.ctre.phoenix6.BaseStatusSignal;
+import com.ctre.phoenix6.CANBus;
+import com.ctre.phoenix6.configs.CANcoderConfiguration;
+import com.ctre.phoenix6.controls.DutyCycleOut;
+import com.ctre.phoenix6.hardware.CANcoder;
+import com.ctre.phoenix6.hardware.TalonFX;
 
 import com.revrobotics.SparkPIDController;
 import com.revrobotics.CANSparkMax;
@@ -23,7 +29,7 @@ public class MAXSwerveModule {
   private final CANSparkMax m_drivingSpark;
   private final CANSparkMax m_turningSpark;
 
-  public final CANCoder m_absoluteEncoder;  
+  public final CANcoder m_absoluteEncoder;  
 
   private final RelativeEncoder m_drivingEncoder;
   private final RelativeEncoder m_turningEncoder;
@@ -64,10 +70,10 @@ public class MAXSwerveModule {
      m_drivingEncoder = m_drivingSpark.getEncoder();
      m_drivingEncoder.setPosition(0);
      m_turningEncoder = m_turningSpark.getEncoder();
-     m_absoluteEncoder = new CANCoder(turningEncoderChannel);
+     m_absoluteEncoder = new CANcoder(turningEncoderChannel);
  
      // Configuration settings for Absolute Encoder
-     CANCoderConfiguration config = new CANCoderConfiguration();
+     CANcoderConfiguration config = new CANcoderConfiguration();
      config.sensorCoefficient = 2 * Math.PI / kEncoderResolution;
      config.unitString = "rad";
      config.sensorTimeBase = SensorTimeBase.PerSecond;
