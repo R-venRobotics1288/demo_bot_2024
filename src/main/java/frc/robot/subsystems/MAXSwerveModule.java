@@ -55,6 +55,7 @@ public class MAXSwerveModule {
 
 		m_drivingClosedLoopController = new PIDController(0.25, 0, 0);
 		m_turningClosedLoopController = new PIDController(0.6, 0, 0);
+		m_turningClosedLoopController.enableContinuousInput(-Math.PI, Math.PI);
 
 		// Apply the respective configurations to the SPARKS. Reset parameters before
 		// applying the configuration to bring the SPARK to a known good state. Persist
