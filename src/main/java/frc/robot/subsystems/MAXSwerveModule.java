@@ -17,8 +17,10 @@ import com.revrobotics.spark.SparkBase.ResetMode;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.ctre.phoenix6.configs.CANcoderConfiguration;
 import com.ctre.phoenix6.hardware.CANcoder;
+import com.ctre.phoenix6.hardware.DeviceIdentifier;
 import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.RelativeEncoder;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 
 import frc.robot.Configs;
 
@@ -51,8 +53,8 @@ public class MAXSwerveModule {
 		m_turningEncoder = m_turningSpark.getEncoder();
 		m_absoluteEncoder = new CANcoder(absoluteEncoderCANId);
 
-		m_drivingClosedLoopController = new PIDController(0.1, 0, 0);
-		m_turningClosedLoopController = new PIDController(0.4, 0, 0);
+		m_drivingClosedLoopController = new PIDController(0.25, 0, 0);
+		m_turningClosedLoopController = new PIDController(0.6, 0, 0);
 
 		// Apply the respective configurations to the SPARKS. Reset parameters before
 		// applying the configuration to bring the SPARK to a known good state. Persist
@@ -93,7 +95,7 @@ public class MAXSwerveModule {
 	}
 
 	public double getAbsoluteEncoderRad() {
-		return m_absoluteEncoder.getAbsolutePosition().getValueAsDouble();
+		return (m_absoluteEncoder.getAbsolutePosition().getValueAsDouble()) * (2 * Math.PI);
 	}
 
 	/**
