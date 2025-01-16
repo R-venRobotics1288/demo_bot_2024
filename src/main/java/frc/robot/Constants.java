@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
@@ -25,8 +26,10 @@ public final class Constants {
   public static final class DriveConstants {
     // Driving Parameters - Note that these are not the maximum capable speeds of
     // the robot, rather the allowed maximum speeds
-    public static final double kMaxSpeedMetersPerSecond = 3.7;
+    public static final double kMaxSpeedMetersPerSecond = 15;
     public static final double kMaxAngularSpeed = 2 * Math.PI; // radians per second
+    public static SlewRateLimiter filterx = new SlewRateLimiter(15);
+    public static SlewRateLimiter filtery = new SlewRateLimiter(15);
 
     // Chassis configuration
     public static final double kTrackWidth = Units.inchesToMeters(18);
