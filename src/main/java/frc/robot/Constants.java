@@ -26,10 +26,11 @@ public final class Constants {
   public static final class DriveConstants {
     // Driving Parameters - Note that these are not the maximum capable speeds of
     // the robot, rather the allowed maximum speeds
-    public static final double kMaxSpeedMetersPerSecond = 15;
-    public static final double kMaxAngularSpeed = 2 * Math.PI; // radians per second
-    public static SlewRateLimiter filterx = new SlewRateLimiter(15);
-    public static SlewRateLimiter filtery = new SlewRateLimiter(15);
+    public static double kMaxSpeedMetersPerSecond = 15;
+    public static double kMaxAngularSpeed = 2 * Math.PI; // radians per second
+    public static double slewRateBase = 15;
+    public static SlewRateLimiter filterx = new SlewRateLimiter(slewRateBase);
+    public static SlewRateLimiter filtery = new SlewRateLimiter(slewRateBase);
 
     // Chassis configuration
     public static final double kTrackWidth = Units.inchesToMeters(22.5);
