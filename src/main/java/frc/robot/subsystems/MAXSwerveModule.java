@@ -20,7 +20,6 @@ import com.ctre.phoenix6.hardware.CANcoder;
 import com.ctre.phoenix6.hardware.DeviceIdentifier;
 import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.RelativeEncoder;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 
 import frc.robot.Configs;
 
