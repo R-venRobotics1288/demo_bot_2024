@@ -22,15 +22,17 @@ public class shuffleManager {
         updateShuffleboard();
     }
     public void updateShuffleboard() {
-        Constants.DriveConstants.kMaxSpeedMetersPerSecond = maxSpeed.getDouble(Constants.DriveConstants.kMaxSpeedMetersPerSecond);
-        if (Constants.DriveConstants.maxRotRps != maxRot.getDouble(Constants.DriveConstants.maxRotRps)){
-            Constants.DriveConstants.maxRotRps = maxRot.getDouble(Constants.DriveConstants.maxRotRps);
-            Constants.DriveConstants.kMaxAngularSpeed = maxRot.getDouble(Constants.DriveConstants.maxRotRps) * 2 * Math.PI;
-        }
-        if (Constants.DriveConstants.slewRateBase != slew.getDouble(Constants.DriveConstants.slewRateBase)) {
-            Constants.DriveConstants.slewRateBase = slew.getDouble(Constants.DriveConstants.slewRateBase);
-            Constants.DriveConstants.filterx = new SlewRateLimiter(Constants.DriveConstants.slewRateBase);
-            Constants.DriveConstants.filtery = new SlewRateLimiter(Constants.DriveConstants.slewRateBase);
+        if (Constants.DriveConstants.shuffleManager_enable) {
+            Constants.DriveConstants.kMaxSpeedMetersPerSecond = maxSpeed.getDouble(Constants.DriveConstants.kMaxSpeedMetersPerSecond);
+            if (Constants.DriveConstants.maxRotRps != maxRot.getDouble(Constants.DriveConstants.maxRotRps)){
+                Constants.DriveConstants.maxRotRps = maxRot.getDouble(Constants.DriveConstants.maxRotRps);
+                Constants.DriveConstants.kMaxAngularSpeed = maxRot.getDouble(Constants.DriveConstants.maxRotRps) * 2 * Math.PI;
+            }
+            if (Constants.DriveConstants.slewRateBase != slew.getDouble(Constants.DriveConstants.slewRateBase)) {
+                Constants.DriveConstants.slewRateBase = slew.getDouble(Constants.DriveConstants.slewRateBase);
+                Constants.DriveConstants.filterx = new SlewRateLimiter(Constants.DriveConstants.slewRateBase);
+                Constants.DriveConstants.filtery = new SlewRateLimiter(Constants.DriveConstants.slewRateBase);
+            }
         }
     }
 }
