@@ -14,9 +14,9 @@ import edu.wpi.first.math.filter.SlewRateLimiter;
 
 public class shuffleManager {
     private ShuffleboardTab shuffleTab = Shuffleboard.getTab("tooning");
-    private GenericEntry slew = shuffleTab.add("slew", Constants.DriveConstants.slewRateBase).withWidget(BuiltInWidgets.kNumberSlider).withProperties(Map.of("min", 1, "max", 50)).getEntry();
-    private GenericEntry maxSpeed = shuffleTab.add("max speed", Constants.DriveConstants.kMaxSpeedMetersPerSecond).withWidget(BuiltInWidgets.kNumberSlider).withProperties(Map.of("min", 1, "max", 75)).getEntry();
-    private GenericEntry maxRot = shuffleTab.add("max wheel rot per s", Constants.DriveConstants.maxRotRps).withWidget(BuiltInWidgets.kNumberSlider).withProperties(Map.of("min", 1, "max", 30)).getEntry();
+    private GenericEntry slew = shuffleTab.addPersistent("slew", Constants.DriveConstants.slewRateBase).withWidget(BuiltInWidgets.kNumberSlider).withProperties(Map.of("min", 1, "max", 50)).getEntry();
+    private GenericEntry maxSpeed = shuffleTab.addPersistent("max speed", Constants.DriveConstants.kMaxSpeedMetersPerSecond).withWidget(BuiltInWidgets.kNumberSlider).withProperties(Map.of("min", 1, "max", 75)).getEntry();
+    private GenericEntry maxRot = shuffleTab.addPersistent("max wheel rot per s", Constants.DriveConstants.maxRotRps).withWidget(BuiltInWidgets.kNumberSlider).withProperties(Map.of("min", 1, "max", 30)).getEntry();
 
     public void initShuffleboard() {
         updateShuffleboard();
