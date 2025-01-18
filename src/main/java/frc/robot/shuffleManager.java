@@ -14,24 +14,24 @@ import edu.wpi.first.math.filter.SlewRateLimiter;
 
 public class shuffleManager {
     private ShuffleboardTab shuffleTab = Shuffleboard.getTab("tooning");
-    private GenericEntry slew = shuffleTab.addPersistent("slew", Constants.DriveConstants.slewRateBase).withWidget(BuiltInWidgets.kNumberSlider).withProperties(Map.of("min", 1, "max", 50)).getEntry();
-    private GenericEntry maxSpeed = shuffleTab.addPersistent("max speed", Constants.DriveConstants.kMaxSpeedMetersPerSecond).withWidget(BuiltInWidgets.kNumberSlider).withProperties(Map.of("min", 1, "max", 75)).getEntry();
-    private GenericEntry maxRot = shuffleTab.addPersistent("max wheel rot per s", Constants.DriveConstants.maxRotRps).withWidget(BuiltInWidgets.kNumberSlider).withProperties(Map.of("min", 1, "max", 30)).getEntry();
+    private GenericEntry slew = shuffleTab.add("slew", Constants.DriveConstants.SLEW_RATE_BASE).withWidget(BuiltInWidgets.kNumberSlider).withProperties(Map.of("min", 1, "max", 50)).getEntry();
+    private GenericEntry maxSpeed = shuffleTab.add("max speed", Constants.DriveConstants.K_MAX_SPEED_METERS_PER_SECOND).withWidget(BuiltInWidgets.kNumberSlider).withProperties(Map.of("min", 1, "max", 75)).getEntry();
+    private GenericEntry maxRot = shuffleTab.add("max wheel rot per s", Constants.DriveConstants.MAX_ROT_RPS).withWidget(BuiltInWidgets.kNumberSlider).withProperties(Map.of("min", 1, "max", 30)).getEntry();
 
     public void initShuffleboard() {
         updateShuffleboard();
     }
     public void updateShuffleboard() {
-        if (Constants.DriveConstants.shuffleManager_enable) {
-            Constants.DriveConstants.kMaxSpeedMetersPerSecond = maxSpeed.getDouble(Constants.DriveConstants.kMaxSpeedMetersPerSecond);
-            if (Constants.DriveConstants.maxRotRps != maxRot.getDouble(Constants.DriveConstants.maxRotRps)){
-                Constants.DriveConstants.maxRotRps = maxRot.getDouble(Constants.DriveConstants.maxRotRps);
-                Constants.DriveConstants.kMaxAngularSpeed = maxRot.getDouble(Constants.DriveConstants.maxRotRps) * 2 * Math.PI;
+        if (Constants.DriveConstants.SHUFFLE_MANAGER_ENABLE) {
+            Constants.DriveConstants.K_MAX_SPEED_METERS_PER_SECOND = maxSpeed.getDouble(Constants.DriveConstants.K_MAX_SPEED_METERS_PER_SECOND);
+            if (Constants.DriveConstants.MAX_ROT_RPS != maxRot.getDouble(Constants.DriveConstants.MAX_ROT_RPS)){
+                Constants.DriveConstants.MAX_ROT_RPS = maxRot.getDouble(Constants.DriveConstants.MAX_ROT_RPS);
+                Constants.DriveConstants.K_MAX_ANGULAR_SPEED = maxRot.getDouble(Constants.DriveConstants.MAX_ROT_RPS) * 2 * Math.PI;
             }
-            if (Constants.DriveConstants.slewRateBase != slew.getDouble(Constants.DriveConstants.slewRateBase)) {
-                Constants.DriveConstants.slewRateBase = slew.getDouble(Constants.DriveConstants.slewRateBase);
-                Constants.DriveConstants.filterx = new SlewRateLimiter(Constants.DriveConstants.slewRateBase);
-                Constants.DriveConstants.filtery = new SlewRateLimiter(Constants.DriveConstants.slewRateBase);
+            if (Constants.DriveConstants.SLEW_RATE_BASE != slew.getDouble(Constants.DriveConstants.SLEW_RATE_BASE)) {
+                Constants.DriveConstants.SLEW_RATE_BASE = slew.getDouble(Constants.DriveConstants.SLEW_RATE_BASE);
+                Constants.DriveConstants.FILTER_X = new SlewRateLimiter(Constants.DriveConstants.SLEW_RATE_BASE);
+                Constants.DriveConstants.FILTER_Y = new SlewRateLimiter(Constants.DriveConstants.SLEW_RATE_BASE);
             }
         }
     }
